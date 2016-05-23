@@ -25,7 +25,7 @@
                </font>
             </Label>
             <ComboBox fx:id="cbComanda" layoutX="224.0" layoutY="102.0" onAction="#cercarComponets" prefHeight="21.0" prefWidth="176.0" />
-            <ListView layoutX="51.0" layoutY="182.0" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="lvComponents" layoutX="51.0" layoutY="182.0" prefHeight="200.0" prefWidth="200.0" />
             <Label layoutX="51.0" layoutY="153.0" prefHeight="23.0" prefWidth="103.0" text="Components">
                <font>
                   <Font name="Serif Regular" size="17.0" />
@@ -51,7 +51,7 @@
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chbAnulada" layoutX="399.0" layoutY="182.0" mnemonicParsing="false" onAction="#habilitaDesa" text="Anulada">
+            <CheckBox fx:id="chbAnulada" layoutX="390.0" layoutY="182.0" mnemonicParsing="false" onAction="#habilitaDesa" text="Anulada">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
