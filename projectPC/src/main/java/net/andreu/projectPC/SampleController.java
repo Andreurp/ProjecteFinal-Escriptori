@@ -12,14 +12,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.CheckBox;
 
-public class SampleController implements Initializable {
+public class SampleController implements Initializable  {
 	@FXML
 	private ComboBox<String> cbUser;
 	@FXML
@@ -43,7 +43,6 @@ public class SampleController implements Initializable {
 	private Statement consulta;
 	private Comanda comandaActual;
 	private ArrayList<Comanda> llistaComandes = new ArrayList<Comanda>();
-	//private int posicio = 0;
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// obrir base de dades
@@ -112,9 +111,11 @@ public class SampleController implements Initializable {
 		chbEntregada.setSelected(false);
 		chbAnulada.setSelected(false);
 		btnDesar.setDisable(true);
+		
 		int id = Integer.parseInt(cbComanda.getValue().toString().split("-")[0].trim());
 		int i=0;
 		boolean trobat = false;
+		
 		while(i< llistaComandes.size()&&!trobat){
 			if(llistaComandes.get(i).getId_comanda()== id){
 				comandaActual = llistaComandes.get(i);
@@ -139,19 +140,69 @@ public class SampleController implements Initializable {
 			chbAnulada.setSelected(true);
 			break;
 		}
-		
-		
 	}
 	
-	// Event Listener on CheckBox[#chbRebuda].onAction
+	// Event Listener on CheckBox[#chbRebuda].onMouseClicked
+	@FXML
+	public void SelectCheckBoxR(MouseEvent event) {
+		
+		chbProcessant.setSelected(false);
+		chbFinalitzada.setSelected(false);
+		chbEntregada.setSelected(false);
+		chbAnulada.setSelected(false);
+	}
+	
+	// Event Listener on CheckBox[#chbProcessant].onMouseClicked
+	@FXML
+	public void SelectCheckBoxP(MouseEvent event) {
+		
+		chbRebuda.setSelected(false);
+		chbFinalitzada.setSelected(false);
+		chbEntregada.setSelected(false);
+		chbAnulada.setSelected(false);
+	}
+	
+	// Event Listener on CheckBox[#chbFinalitzada].onMouseClicked
+	@FXML
+	public void SelectCheckBoxF(MouseEvent event) {
+		
+		chbRebuda.setSelected(false);
+		chbProcessant.setSelected(false);
+		chbEntregada.setSelected(false);
+		chbAnulada.setSelected(false);
+	}
+	
+	// Event Listener on CheckBox[#chbEntregada].onMouseClicked
+	@FXML
+	public void SelectCheckBoxE(MouseEvent event) {
+		
+		chbRebuda.setSelected(false);
+		chbProcessant.setSelected(false);
+		chbFinalitzada.setSelected(false);
+		chbAnulada.setSelected(false);
+	}
+	
+	// Event Listener on CheckBox[#chbAnulada].onMouseClicked
+	@FXML
+	public void SelectCheckBoxA(MouseEvent event) {
+		
+		chbRebuda.setSelected(false);
+		chbProcessant.setSelected(false);
+		chbFinalitzada.setSelected(false);
+		chbEntregada.setSelected(false);
+	}
+	
+	// Event Listener on CheckBox.onAction
 	@FXML
 	public void habilitaDesa(ActionEvent event) {
-		//btnDesar.setDisable(false);
+		
+		btnDesar.setDisable(false);
 	}
-
+	
 	// Event Listener on Button[#btnDesar].onMouseClicked
 	@FXML
 	public void desarCanvis(MouseEvent event) {
-		//btnDesar.setDisable(true);
+		
+		btnDesar.setDisable(true);
 	}
 }
