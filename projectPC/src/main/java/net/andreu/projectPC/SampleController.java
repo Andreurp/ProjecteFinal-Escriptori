@@ -41,8 +41,9 @@ public class SampleController implements Initializable {
 
 	private Connection con = null;
 	private Statement consulta;
+	private Comanda comandaActual;
 	private ArrayList<Comanda> llistaComandes = new ArrayList<Comanda>();
-	private int posicio = 0;
+	//private int posicio = 0;
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// obrir base de dades
@@ -82,7 +83,6 @@ public class SampleController implements Initializable {
 			ResultSet resultat = consulta.executeQuery(
 					"SELECT * FROM comandes_comanda WHERE usuari_id = (SELECT id FROM auth_user WHERE username = '" + user + "')");
 			
-			cbComanda.setValue("Tria una comanda");
 			llistaComandes.clear();
 			// posa-los al cbOrdres
 			while (resultat.next()) {
@@ -95,6 +95,7 @@ public class SampleController implements Initializable {
 				String estat=resultat.getString("estat");
 				cbComanda.getItems().addAll(id_comanda+" - "+data+" - "+estat);
 			}
+			//cbComanda.setValue("Tria una comanda");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -104,28 +105,42 @@ public class SampleController implements Initializable {
 	// Event Listener on ComboBox[#cbComanda].onAction
 	@FXML
 	public void cercarComponets(ActionEvent event) {
-		/*lvComponents.getItems().clear();
+		lvComponents.getItems().clear();
 		chbRebuda.setSelected(false);
 		chbProcessant.setSelected(false);
 		chbFinalitzada.setSelected(false);
 		chbEntregada.setSelected(false);
 		chbAnulada.setSelected(false);
 		btnDesar.setDisable(true);
-		
-		if (posicio >= llistaComandes.size()) {
-			posicio = 0;
-		} else if (posicio < 0) {
-			posicio = llistaComandes.size() - 1;
+		int id = Integer.parseInt(cbComanda.getValue().toString().split("-")[0].trim());
+		int i=0;
+		boolean trobat = false;
+		while(i< llistaComandes.size()&&!trobat){
+			if(llistaComandes.get(i).getId_comanda()== id){
+				comandaActual = llistaComandes.get(i);
+				trobat=true;
+			}			
+			i++;
 		}
+
+		//fer select de linies_comanda i omplir Components
 		
-		switch (llistaComandes.get(posicio).getEstat()) {
+		switch (comandaActual.getEstat()) {
 		case "R":
 			chbRebuda.setSelected(true);
 			break;
-
-		default:
+		case "P":
+			chbProcessant.setSelected(true);
+		case "F":
+			chbFinalitzada.setSelected(true);
+		case "E":
+			chbEntregada.setSelected(true);
+		case "A":
+			chbAnulada.setSelected(true);
 			break;
-		}*/
+		}
+		
+		
 	}
 	
 	// Event Listener on CheckBox[#chbRebuda].onAction

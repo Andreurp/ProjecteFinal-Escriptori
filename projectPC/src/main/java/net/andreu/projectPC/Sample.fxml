@@ -31,27 +31,27 @@
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </Label>
-            <CheckBox fx:id="chbRebuda" layoutX="271.0" layoutY="182.0" mnemonicParsing="false" onAction="#habilitaDesa" text="Rebuda">
+            <CheckBox fx:id="chbRebuda" layoutX="271.0" layoutY="182.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxR" text="Rebuda">
                <font>
                   <Font name="Serif Regular" size="18.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chbProcessant" layoutX="271.0" layoutY="220.0" mnemonicParsing="false" onAction="#habilitaDesa" text="Processant">
+            <CheckBox fx:id="chbProcessant" layoutX="271.0" layoutY="220.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxP" text="Processant">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chbFinalitzada" layoutX="390.0" layoutY="220.0" mnemonicParsing="false" onAction="#habilitaDesa" text="Finalitazada">
+            <CheckBox fx:id="chbFinalitzada" layoutX="390.0" layoutY="220.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxF" text="Finalitazada">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chbEntregada" layoutX="325.0" layoutY="270.0" mnemonicParsing="false" onAction="#habilitaDesa" text="Entregada">
+            <CheckBox fx:id="chbEntregada" layoutX="325.0" layoutY="270.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxE" text="Entregada">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chbAnulada" layoutX="390.0" layoutY="182.0" mnemonicParsing="false" onAction="#habilitaDesa" text="Anulada">
+            <CheckBox fx:id="chbAnulada" layoutX="390.0" layoutY="182.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxA" text="Anulada">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
