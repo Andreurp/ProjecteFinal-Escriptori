@@ -10,58 +10,58 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.andreu.projectPC.SampleController">
-   <center>
-      <Pane prefHeight="396.0" prefWidth="542.0" BorderPane.alignment="CENTER">
+   <top>
+      <Pane prefHeight="428.0" prefWidth="628.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="99.0" layoutY="41.0" prefHeight="24.0" prefWidth="103.0" text="Usuari:">
+            <Label layoutX="164.0" layoutY="41.0" prefHeight="24.0" prefWidth="103.0" text="Usuari:">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cbUser" layoutX="225.0" layoutY="40.0" onAction="#cercaComandes" prefHeight="25.0" prefWidth="174.0" promptText="Tria un usuari" />
-            <Label layoutX="99.0" layoutY="101.0" prefHeight="26.0" prefWidth="101.0" text="Comandes:">
+            <ComboBox fx:id="cbUser" layoutX="290.0" layoutY="40.0" onAction="#cercaComandes" prefHeight="25.0" prefWidth="174.0" promptText="Tria un usuari" />
+            <Label layoutX="164.0" layoutY="101.0" prefHeight="26.0" prefWidth="101.0" text="Comandes:">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cbComanda" layoutX="224.0" layoutY="102.0" onAction="#cercarComponets" prefHeight="21.0" prefWidth="176.0" />
-            <ListView fx:id="lvComponents" layoutX="51.0" layoutY="182.0" prefHeight="200.0" prefWidth="200.0" />
+            <ComboBox fx:id="cbComanda" layoutX="289.0" layoutY="102.0" onAction="#cercarComponets" prefHeight="21.0" prefWidth="176.0" />
+            <ListView fx:id="lvComponents" layoutX="51.0" layoutY="181.0" prefHeight="132.0" prefWidth="530.0" />
             <Label layoutX="51.0" layoutY="153.0" prefHeight="23.0" prefWidth="103.0" text="Components">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </Label>
-            <CheckBox fx:id="chbRebuda" layoutX="271.0" layoutY="182.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxR" text="Rebuda">
+            <CheckBox fx:id="chbRebuda" layoutX="27.0" layoutY="336.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxR" text="Rebuda">
                <font>
                   <Font name="Serif Regular" size="18.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chbProcessant" layoutX="271.0" layoutY="220.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxP" text="Processant">
+            <CheckBox fx:id="chbProcessant" layoutX="127.0" layoutY="337.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxP" text="Processant">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chbFinalitzada" layoutX="390.0" layoutY="220.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxF" text="Finalitazada">
+            <CheckBox fx:id="chbFinalitzada" layoutX="246.0" layoutY="337.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxF" text="Finalitazada">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chbEntregada" layoutX="325.0" layoutY="270.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxE" text="Entregada">
+            <CheckBox fx:id="chbEntregada" layoutX="376.0" layoutY="337.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxE" text="Entregada">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chbAnulada" layoutX="390.0" layoutY="182.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxA" text="Anulada">
+            <CheckBox fx:id="chbAnulada" layoutX="500.0" layoutY="337.0" mnemonicParsing="false" onAction="#habilitaDesa" onMouseClicked="#SelectCheckBoxA" text="Anulada">
                <font>
                   <Font name="Serif Regular" size="17.0" />
                </font>
             </CheckBox>
-            <Button fx:id="btnDesar" disable="true" layoutX="304.0" layoutY="330.0" mnemonicParsing="false" onMouseClicked="#desarCanvis" prefHeight="26.0" prefWidth="144.0" text="Desar canvis">
+            <Button fx:id="btnDesar" disable="true" layoutX="232.0" layoutY="381.0" mnemonicParsing="false" onMouseClicked="#desarCanvis" prefHeight="26.0" prefWidth="144.0" text="Desar canvis">
                <font>
                   <Font name="Serif Regular" size="14.0" />
                </font>
             </Button>
          </children>
       </Pane>
-   </center>
+   </top>
 </BorderPane>

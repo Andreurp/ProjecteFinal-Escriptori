@@ -225,6 +225,7 @@ public class SampleController implements Initializable  {
 	// Event Listener on Button[#btnDesar].onMouseClicked
 	@FXML
 	public void desarCanvis(MouseEvent event) {
+		
 		String estat = "R";
 		if(chbProcessant.isSelected()){
 			estat = "P";
