@@ -80,7 +80,7 @@ public class SampleController implements Initializable  {
 		// seleccionar les comandes que pertanyen a l'usuari
 		try {
 			ResultSet resultat = consulta.executeQuery(
-					"SELECT * FROM comandes_comanda WHERE usuari_id = (SELECT id FROM auth_user WHERE username = '" + user + "')");
+					"SELECT * FROM comandes_comanda WHERE estat != 'A' and usuari_id = (SELECT id FROM auth_user WHERE username = '" + user + "')");
 			
 			llistaComandes.clear();
 			// posa-los al cbOrdres
@@ -111,20 +111,40 @@ public class SampleController implements Initializable  {
 		chbEntregada.setSelected(false);
 		chbAnulada.setSelected(false);
 		btnDesar.setDisable(true);
-		
-		int id = Integer.parseInt(cbComanda.getValue().toString().split("-")[0].trim());
-		int i=0;
-		boolean trobat = false;
-		
-		while(i< llistaComandes.size()&&!trobat){
-			if(llistaComandes.get(i).getId_comanda()== id){
-				comandaActual = llistaComandes.get(i);
-				trobat=true;
-			}			
-			i++;
+
+		if(cbComanda.getItems().size()>0){
+			int id = Integer.parseInt(cbComanda.getValue().toString().split("-")[0].trim());
+			int i=0;
+			boolean trobat = false;
+			
+			while(i< llistaComandes.size()&&!trobat){
+				if(llistaComandes.get(i).getId_comanda()== id){
+					comandaActual = llistaComandes.get(i);
+					trobat=true;
+				}			
+				i++;
+			}
 		}
 
+
 		//fer select de linies_comanda i omplir Components
+		int id_comanda = comandaActual.getId_comanda();
+		
+		try {
+			String cons  = "SELECT l.quantitat, p.nom FROM comandes_linia l inner join productes_producte p WHERE l.id_producte_id = p.id_producte and l.id_comanda_id = '" + id_comanda + "'";
+			
+			ResultSet resultatL = consulta.executeQuery(cons);
+
+			String linia;
+			while (resultatL.next()) {
+				linia = resultatL.getString("l.quantitat")+" - " + resultatL.getString("p.nom") ;
+				
+				lvComponents.getItems().addAll(linia);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		switch (comandaActual.getEstat()) {
 		case "R":
@@ -132,10 +152,13 @@ public class SampleController implements Initializable  {
 			break;
 		case "P":
 			chbProcessant.setSelected(true);
+			break;
 		case "F":
 			chbFinalitzada.setSelected(true);
+			break;
 		case "E":
 			chbEntregada.setSelected(true);
+			break;
 		case "A":
 			chbAnulada.setSelected(true);
 			break;
@@ -202,6 +225,46 @@ public class SampleController implements Initializable  {
 	// Event Listener on Button[#btnDesar].onMouseClicked
 	@FXML
 	public void desarCanvis(MouseEvent event) {
+		String estat = "R";
+		if(chbProcessant.isSelected()){
+			estat = "P";
+		}else if(chbFinalitzada.isSelected()){
+			estat = "F";
+		}else if(chbEntregada.isSelected()){
+			estat = "E";
+		}else if(chbAnulada.isSelected()){
+			estat = "A";
+		}
+		String cons  = "Update comandes_comanda SET estat= '" + estat + "' WHERE id_comanda = " + comandaActual.getId_comanda();
+		try {
+			consulta.executeUpdate(cons);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//retornar productes si anulen la comanda
+		if(estat.equals("A")){
+			try {
+				String cons2  = "SELECT l.quantitat, l.id_producte_id, p.stock FROM comandes_linia l inner join productes_producte p WHERE l.id_producte_id = p.id_producte and l.id_comanda_id = '" + comandaActual.getId_comanda() + "'";
+				ResultSet resultatL = consulta.executeQuery(cons2);
+				ArrayList<String> updates = new ArrayList<String>();
+				while (resultatL.next()) {
+					int estocfinal = resultatL.getInt("l.quantitat")+resultatL.getInt("p.stock");
+					updates.add("Update productes_producte set stock = " + estocfinal + " WHERE id_producte = " + resultatL.getInt("l.id_producte_id" ));
+				}
+				
+				for(String update : updates){
+					consulta.executeUpdate(update);
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		cercaComandes(new ActionEvent());
 		
 		btnDesar.setDisable(true);
 	}
